@@ -34,6 +34,25 @@
             <form action="/post-job/store" method="POST">
                 @csrf
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                    <div class="sm:col-span-2">
+                        <label for="job_title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
+                            Title</label>
+                        <input type="text" name="job_title" id="job_title"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="ex: Pharmacy Technician..." required>
+                    </div>
+                    <div class="w-full">
+                        <label for="job_type"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
+                        <select name="job_category" id=""
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                            <option disabled selected>Select job category</option>
+                            <option value="1">Arts, Design, Entertainment, Sports and Media</option>
+                            <option value="2">Computer and Mathematical</option>
+                            <option value="3">Education, Training and Library</option>
+                            <option value="4">Office and Administrative Support</option>
+                        </select>
+                    </div>
                     <div class="w-full">
                         <label for="opening_date"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Opening Date of
@@ -58,6 +77,13 @@
                             placeholder="ex: Building 670, Garapan, Saipan, MP 96950" required>
                     </div>
                     <div class="w-full">
+                        <label for="hourly_wage"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Hourly Wage</label>
+                        <input type="text" name="hourly_wage" id="hourly_wage"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="ex: $10/hour..." required>
+                    </div>
+                    <div class="w-full">
                         <label for="payment_frequency"
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Payment
                             Frequency</label>
@@ -66,12 +92,33 @@
                             placeholder="ex: Bi-weekly..." required>
                     </div>
                     <div class="w-full">
+                        <label for="job_type" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
+                            Type</label>
+                        <select name="job_type" id="job_type"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                            required>
+                            <option disabled selected>Select job type</option>
+                            <option value="1">Full Time</option>
+                            <option value="2">Part-Time</option>
+                            <option value="3">Contract</option>
+                            <option value="4">Internship</option>
+                        </select>
+                    </div>
+                    <div class="w-full">
                         <label for="work_hours"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Estimated Work Hours
-                            (w/ per week)</label>
-                        <input type="text" name="work_hours" id="work_hours"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Work Hours per
+                            day</label>
+                        <input type="text" name="work_hours[]" id="work_hours"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="ex: 8 hrs/day, 40 hrs/week..." required>
+                            placeholder="ex: 8 hours/day..." required>
+                    </div>
+                    <div class="w-full">
+                        <label for="work_hours"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Work Hours per
+                            week</label>
+                        <input type="text" name="work_hours[]" id="work_hours"
+                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                            placeholder="ex: 40 hours/week..." required>
                     </div>
                     <div class="w-full">
                         <label for="work_days"
@@ -91,7 +138,8 @@
                     </div>
                     <div class="sm:col-span-2">
                         <label for="job_description"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job Description</label>
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Job
+                            Description</label>
                         <textarea name="job_description" id="job_description" rows="8"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                             placeholder="Your description here"></textarea>

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ApplicantController;
 use App\Http\Controllers\ListingController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,8 +17,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [ListingController::class, 'index']);
-Route::get('/job', [ListingController::class, 'show']);
+Route::post('/job/apply/submit', [ApplicantController::class, 'store']);
+Route::get('/job/{listing}/apply', [ApplicantController::class, 'index']);
+Route::get('/job/{listing}', [ListingController::class, 'show']);
 Route::get('/post-job', [ListingController::class, 'create']);
-Route::post('/post-job/company-details', [ListingController::class, 'create_companyDetails']);
-Route::get('/post-job/company-details/job-details', [ListingController::class, 'create_jobDetails']);
+Route::post('/post-job/company-details', [ListingController::class, 'createCompanyDetails']);
+Route::get('/post-job/company-details/job-details', [ListingController::class, 'createJobDetails']);
 Route::post('/post-job/store', [ListingController::class, 'store']);
+Route::post('/login/authenticate', [UserController::class, 'store']);
+Route::get('/login', [UserController::class, 'index']);
+Route::get('/logout', [UserController::class, 'destroy']);

@@ -5,15 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class CompanyListing extends Model
+class ApplicantListing extends Model
 {
     use HasFactory;
 
+    public $table = 'applicant_listing';
+    public $timestamps = false;
+
     protected $fillable = [
-        'company_id',
+        'applicant_id',
         'listing_id'
     ];
-
-    protected $table = 'company_listing';
-    public $timestamps = false;
 }

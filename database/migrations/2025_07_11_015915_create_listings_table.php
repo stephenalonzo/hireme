@@ -15,14 +15,19 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('company_id');
             $table->foreign('company_id')->references('id')->on('companies')->onDelete('cascade');
+            $table->longText('uid');
+            $table->longText('job_title');
+            $table->string('job_category');
             $table->date('opening_date');
             $table->date('closing_date')->nullable();
             $table->string('location');
+            $table->string('hourly_wage');
             $table->string('payment_frequency');
-            $table->string('work_hours');
+            $table->bigInteger('job_type');
             $table->string('work_days');
+            $table->string('work_hours');
             $table->string('qualifications');
-            $table->longText('description');
+            $table->longText('job_description');
             $table->timestamps();
         });
     }

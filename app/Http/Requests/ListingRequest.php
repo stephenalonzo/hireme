@@ -11,7 +11,7 @@ class ListingRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class ListingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'job_title' => 'required',
+            'job_category' => 'required',
+            'opening_date' => ['required', 'date'],
+            'closing_date' => ['required', 'date'],
+            'location' => 'required',
+            'hourly_wage' => 'required',
+            'payment_frequency' => 'required',
+            'job_type' => 'required',
+            'work_hours' => ['required'],
+            'work_days' => 'required',
+            'qualifications' => 'required',
+            'job_description' => 'required'
         ];
     }
 }

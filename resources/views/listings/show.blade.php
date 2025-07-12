@@ -5,75 +5,105 @@
                 <div class="space-y-3">
                     <div class="space-y-2">
                         <div class="flex flex-wrap items-center space-x-3">
-                            <p class="text-sm text-gray-400">#25-07-09563452957</p>
-                            <a href="#" class="text-sm underline underline-offset-2">Office and Administrative
-                                Support</a>
+                            <p class="text-sm text-gray-400">{{ $listing->uid }}</p>
+                            <a href="#" class="text-sm underline underline-offset-2">
+                                @switch($listing->job_category)
+                                    @case(1)
+                                        {{ 'Arts, Design, Entertainment, Sports and Media' }}
+                                    @break
+
+                                    @case(2)
+                                        {{ 'Computer and Mathematical' }}
+                                    @break
+
+                                    @case(3)
+                                        {{ 'Education, Training and Library' }}
+                                    @break
+
+                                    @case(4)
+                                        {{ 'Office and Administrative Support' }}
+                                    @break
+
+                                    @default
+                                @endswitch
+                            </a>
                         </div>
                         <h3 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
-                            Accounting Associate
+                            {{ $listing->job_title }}
                         </h3>
                         <div class="flex items-center space-x-3">
                             <span class="px-2 py-1 text-sm rounded-md bg-gray-200">
-                                Full-time
+                                @switch($listing->job_type)
+                                    @case(1)
+                                        {{ 'Full-Time' }}
+                                    @break
+
+                                    @case(2)
+                                        {{ 'Part-Time' }}
+                                    @break
+
+                                    @case(3)
+                                        {{ 'Contract' }}
+                                    @break
+
+                                    @case(4)
+                                        {{ 'Internship' }}
+                                    @break
+
+                                    @default
+                                @endswitch
                             </span>
                             <span class="text-sm">
-                                $11/hour
+                                {{ $listing->hourly_wage }}
                             </span>
                         </div>
                     </div>
-                    <p>Ambyth Shipping Micronesia, Inc.</p>
+                    @foreach ($listing->companies as $company)
+                        <p>{{ $company->company_name }}</p>
+                    @endforeach
                 </div>
-                <a href="" class="px-4 py-2 rounded-md bg-blue-600 text-white w-full text-center">Apply Now</a>
+                @foreach ($listing->applicants as $applicant)
+                    @if ((auth()->user()->name ?? []) == $applicant->applicant_name)
+                        <span
+                            class="w-full text-center bg-gray-200 text-gray-500 dark:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none dark:focus:ring-gray-800">Applied</span>
+                    @else
+                        <a href="/job/{{ $listing->id }}/apply"
+                            class="px-4 py-2 rounded-md bg-blue-600 text-white w-full text-center">Apply Now</a>
+                    @endif
+                @endforeach
                 <hr class="opacity-20 w-full">
                 <div class="space-y-2">
                     <h5 class="font-bold text-xl mt-2">Job description</h5>
-                    <p>Handles a broad range of accounting functions including receiving payments, issuing receipts,
-                        managing petty cash, and preparing daily deposits. Responsible for generating and processing
-                        invoices, managing accounts payable and receivable, and posting entries to the General Ledger.
-                        Performs collections follow-ups, issues Statements of Account, and prepares payroll based on
-                        employee time records. Maintains accurate records for fixed assets, depreciation, and all
-                        financial documents. Prepares monthly financial statements with supporting analyses and ensures
-                        proper filing of accounting documents. Also performs general accounting duties as assigned by
-                        management.</p>
+                    <p>{{ $listing->job_description }}</p>
                 </div>
                 <div class="space-y-2">
                     <h5 class="font-bold text-xl">Details</h5>
                     <p class="font-medium">Opening Date & Closing Date of Announcement</p>
                     <ul class="list-disc list-inside">
-                        <li>July 09, 2025 - July 30, 2025</li>
+                        <li>{{ date('F d, Y', strtotime($listing->opening_date)) }} -
+                            {{ date('F d, Y', strtotime($listing->closing_date)) }}</li>
                     </ul>
                     <p class="font-medium">Location</p>
                     <ul class="list-disc list-inside">
-                        <li>Saipan</li>
+                        <li>{{ $listing->location }}</li>
                     </ul>
                     <p class="font-medium">Work Days per week</p>
                     <ul class="list-disc list-inside">
-                        <li>Mon-Fri</li>
+                        <li>{{ $listing->work_days }}</li>
                     </ul>
                     <p class="font-medium">Estimated Work Hours per day (w/ per week)</p>
                     <ul class="list-disc list-inside">
-                        <li>8 hrs/day</li>
-                        <li>40 hrs/week</li>
+                        @foreach ($listing->work_hours as $work_hours)
+                            <li>{{ $work_hours }}</li>
+                        @endforeach
                     </ul>
                     <p class="font-medium">Payment Frequency</p>
                     <ul class="list-disc list-inside">
-                        <li>Bi-weekly</li>
-                    </ul>
-                    <p class="font-medium">Location Address</p>
-                    <ul class="list-disc list-inside">
-                        <li>Units 5&6 CLL Plaza, 5911 Chalan Pali Arnold</li>
-                    </ul>
-                    <p class="font-medium">Payroll Deductions</p>
-                    <ul class="list-disc list-inside">
-                        <li>State Income Tax</li>
-                        <li>Social Security (FICA)</li>
-                        <li>Insurance</li>
+                        <li>{{ $listing->payment_frequency }}</li>
                     </ul>
                     <p class="font-medium">Job Qualification Requirements</p>
                     <ul class="list-disc list-inside">
-                        <li>Bachelor’s degree or Associate degree with 6 to 8 years of experience in accounting,
-                            including strong background in taxation and analytical skills in interpreting accounting
-                            information.</li>
+                        <li>{{ $listing->qualifications }}</li>
                     </ul>
                 </div>
             </div>
