@@ -7,7 +7,8 @@
                         class="text-3xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                         Register an account
                     </h1>
-                    <form class="space-y-4 md:space-y-6" action="#">
+                    <form class="space-y-4 md:space-y-6" action="/user/register" method="POST">
+                        @csrf
                         <div>
                             <label for="name"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Full
@@ -35,7 +36,7 @@
                             <label for="password_confirm"
                                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Confirm
                                 Password</label>
-                            <input type="password" name="password_confirm" id="password_confirm"
+                            <input type="password" name="password_confirmation" id="password_confirm"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-600 focus:border-blue-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 required>
                         </div>

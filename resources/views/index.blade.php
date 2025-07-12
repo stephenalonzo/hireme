@@ -64,12 +64,12 @@
                                     </span>
                                 </div>
                             </div>
-                            <ul class="flex flex-wrap items-center space-x-2">
+                            <ul class="flex flex-wrap items-center space-x-5">
                                 @foreach ($listing->companies as $company)
                                     <li class="text-sm">{{ $company->company_name }}</li>
                                 @endforeach
-                                <li class="text-sm">
-                                    $11/hour
+                                <li class="text-sm list-disc">
+                                    {{ $listing->hourly_wage }}
                                 </li>
                             </ul>
                             <a href="/job/{{ $listing->id }}"

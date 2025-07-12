@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ApplicantController;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\ListingController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,9 @@ Route::get('/post-job', [ListingController::class, 'create']);
 Route::post('/post-job/company-details', [ListingController::class, 'createCompanyDetails']);
 Route::get('/post-job/company-details/job-details', [ListingController::class, 'createJobDetails']);
 Route::post('/post-job/store', [ListingController::class, 'store']);
-Route::post('/login/authenticate', [UserController::class, 'store']);
-Route::get('/login', [UserController::class, 'index']);
+Route::get('/companies', [CompanyController::class, 'index']);
+Route::post('/login/authenticate', [UserController::class, 'authenticate']);
+Route::get('/login', [UserController::class, 'index'])->name('Login');
+Route::get('/register', [UserController::class, 'create'])->name('Register');
+Route::post('/user/register', [UserController::class, 'store']);
 Route::get('/logout', [UserController::class, 'destroy']);

@@ -6,7 +6,7 @@
                 <div class="relative w-full">
                     <input type="search" name="job"
                         class="block p-2.5 w-full z-20 text-sm text-gray-900 bg-gray-50 rounded-lg border-tl-gray-50 border-bl-2 border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-s-gray-700  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
-                        placeholder="Search skill, company..." required />
+                        placeholder="Search skill, company..." />
                     <button type="submit"
                         class="absolute top-0 end-0 p-2.5 text-sm w-12 flex items-center justify-center font-medium h-full text-white bg-blue-600 rounded-e-lg border border-blue-600 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-600 dark:focus:ring-blue-800 hover:cursor-pointer">
                         <svg class="w-4 h-4" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
@@ -34,7 +34,7 @@
                         <option value="3">Contract</option>
                         <option value="4">Internship</option>
                     </select>
-                    <select name="posted_at" id=""
+                    <select name="sort_by" id=""
                         class="w-full text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100 md:w-48 md:text-start">
                         <option disabled selected>Sort By</option>
                         <option value="1">A-Z</option>

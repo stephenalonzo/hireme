@@ -62,15 +62,17 @@
                         <p>{{ $company->company_name }}</p>
                     @endforeach
                 </div>
-                @foreach ($listing->applicants as $applicant)
-                    @if ((auth()->user()->name ?? []) == $applicant->applicant_name)
-                        <span
-                            class="w-full text-center bg-gray-200 text-gray-500 dark:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none dark:focus:ring-gray-800">Applied</span>
-                    @else
-                        <a href="/job/{{ $listing->id }}/apply"
-                            class="px-4 py-2 rounded-md bg-blue-600 text-white w-full text-center">Apply Now</a>
-                    @endif
-                @endforeach
+                @unless (count($listing->applicants) == 0)
+                    @foreach ($listing->applicants as $applicant)
+                        @if ((auth()->user()->name ?? []) == $applicant->applicant_name)
+                            <span
+                                class="w-full text-center bg-gray-200 text-gray-500 dark:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none dark:focus:ring-gray-800">Applied</span>
+                        @endif
+                    @endforeach
+                @else
+                    <a href="/job/{{ $listing->id }}/apply"
+                        class="px-4 py-2 rounded-md bg-blue-600 text-white w-full text-center">Apply Now</a>
+                @endunless
                 <hr class="opacity-20 w-full">
                 <div class="space-y-2">
                     <h5 class="font-bold text-xl mt-2">Job description</h5>

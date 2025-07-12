@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 
-class CompanyRequest extends FormRequest
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,15 +23,9 @@ class CompanyRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'company_logo' => ['nullable'],
-            'company_name' => 'required',
-            'company_website' => ['nullable'],
-            'company_email' => ['required', 'email', Rule::unique('company', 'email')],
-            'company_phone' => 'required',
-            'company_address' => 'required',
             'name' => 'required',
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed'],
+            'email' => ['required', 'email', Rule::unique('users', 'email')],
+            'password' => ['required', 'confirmed', 'min:8']
         ];
     }
 }

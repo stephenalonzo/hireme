@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\AuthenticateRequest;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,7 +13,12 @@ class UserController extends Controller
         return view('auth.login');
     }
 
-    public function store(UserRequest $request)
+    public function create()
+    {
+        return view('auth.register');
+    }
+
+    public function authenticate(AuthenticateRequest $request)
     {
         $validated = $request->validated();
 
@@ -23,6 +29,13 @@ class UserController extends Controller
         }
 
         return back();
+    }
+
+    public function store(RegisterRequest $request)
+    {
+        $validated = $request->validated();
+
+        dd($validated);
     }
 
     public function destroy(Request $request)

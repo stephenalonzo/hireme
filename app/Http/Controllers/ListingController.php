@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\Listing;
 use Illuminate\Http\Request;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\AuthenticateRequest;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\ListingRequest;
 use App\Models\CompanyListing;
@@ -16,9 +16,23 @@ class ListingController extends Controller
 {
     public function index()
     {
-        return view('index', [
-            'listings' => Listing::all()
-        ]);
+        switch (request('sort_by')) {
+            case (2):
+                return view('index', [
+                    'listings' => Listing::filter(request(['job']))->filter(request(['job_category']))->filter(request(['job_type']))->orderBy('listings.job_title', 'desc')->get()
+                ]);
+                break;
+            case (3):
+                return view('index', [
+                    'listings' => Listing::filter(request(['job']))->filter(request(['job_category']))->filter(request(['job_type']))->orderBy('listings.created_at', 'desc')->get()
+                ]);
+                break;
+            default:
+                return view('index', [
+                    'listings' => Listing::filter(request(['job']))->filter(request(['job_category']))->filter(request(['job_type']))->orderBy('listings.job_title')->get()
+                ]);
+                break;
+        }
     }
 
     public function show(Listing $listing)

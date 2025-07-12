@@ -27,6 +27,25 @@ class Listing extends Model
         'job_description'
     ];
 
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['job'] ?? false) {
+            $query->join('companies', 'listings.company_id', '=', 'companies.id')
+                ->select('companies.*', 'listings.*')
+                ->where('listings.job_title', 'like', '%' . request('job') . '%')
+                ->orWhere('listings.job_description', 'like', '%' . request('job') . '%')
+                ->orWhere('companies.company_name', 'like', '%' . request('job') . '%');
+        }
+
+        if ($filters['job_category'] ?? false) {
+            $query->where('job_category', 'like', '%' . request('job_category') . '%');
+        }
+
+        if ($filters['job_type'] ?? false) {
+            $query->where('job_type', 'like', '%' . request('job_type') . '%');
+        }
+    }
+
     protected $casts = [
         'work_hours' => 'array'
     ];
