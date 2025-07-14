@@ -10,7 +10,7 @@ class CompanyController extends Controller
     public function index()
     {
         return view('companies', [
-            'companies' => Company::all()
+            'companies' => Company::filter(request(['company']))->orderBy('company_name')->get()
         ]);
     }
 }

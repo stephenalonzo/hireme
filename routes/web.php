@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ListingController::class, 'index']);
+Route::get('/', [ListingController::class, 'index'])->name('Home');
 Route::post('/job/apply/submit', [ApplicantController::class, 'store']);
 Route::get('/job/{listing}/apply', [ApplicantController::class, 'index']);
 Route::get('/job/{listing}', [ListingController::class, 'show']);
@@ -25,7 +25,7 @@ Route::get('/post-job', [ListingController::class, 'create']);
 Route::post('/post-job/company-details', [ListingController::class, 'createCompanyDetails']);
 Route::get('/post-job/company-details/job-details', [ListingController::class, 'createJobDetails']);
 Route::post('/post-job/store', [ListingController::class, 'store']);
-Route::get('/companies', [CompanyController::class, 'index']);
+Route::get('/companies', [CompanyController::class, 'index'])->name('Companies');
 Route::post('/login/authenticate', [UserController::class, 'authenticate']);
 Route::get('/login', [UserController::class, 'index'])->name('Login');
 Route::get('/register', [UserController::class, 'create'])->name('Register');

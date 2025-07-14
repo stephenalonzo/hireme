@@ -34,6 +34,8 @@ class Listing extends Model
                 ->select('companies.*', 'listings.*')
                 ->where('listings.job_title', 'like', '%' . request('job') . '%')
                 ->orWhere('listings.job_description', 'like', '%' . request('job') . '%')
+                ->orWhere('listings.job_category', 'like', '%' . request('job') . '%')
+                ->orWhere('listings.uid', 'like', '%' . request('job') . '%')
                 ->orWhere('companies.company_name', 'like', '%' . request('job') . '%');
         }
 
@@ -47,7 +49,7 @@ class Listing extends Model
     }
 
     protected $casts = [
-        'work_hours' => 'array'
+        'work_hours' => 'array',
     ];
 
     public function companies()

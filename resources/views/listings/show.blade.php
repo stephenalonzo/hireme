@@ -5,33 +5,20 @@
                 <div class="space-y-3">
                     <div class="space-y-2">
                         <div class="flex flex-wrap items-center space-x-3">
-                            <p class="text-sm text-gray-400">{{ $listing->uid }}</p>
-                            <a href="#" class="text-sm underline underline-offset-2">
-                                @switch($listing->job_category)
-                                    @case(1)
-                                        {{ 'Arts, Design, Entertainment, Sports and Media' }}
-                                    @break
-
-                                    @case(2)
-                                        {{ 'Computer and Mathematical' }}
-                                    @break
-
-                                    @case(3)
-                                        {{ 'Education, Training and Library' }}
-                                    @break
-
-                                    @case(4)
-                                        {{ 'Office and Administrative Support' }}
-                                    @break
-
-                                    @default
-                                @endswitch
-                            </a>
+                            <a href="/?job={{ str_replace('#', '%23', $listing->uid) }}"
+                                class="text-sm text-gray-400">{{ $listing->uid }}</a>
                         </div>
                         <h3 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
                             {{ $listing->job_title }}
                         </h3>
-                        <div class="flex items-center space-x-3">
+                        <div
+                            class="flex @switch($listing->job_category)
+                                            @case(1)
+                                                {{ 'flex-col items-start space-x-0 space-y-2 md:flex-row md:items-center md:space-x-3 md:space-y-0' }}
+                                            @break
+                                            @default
+                                            {{ 'items-center space-x-3' }}
+                                        @endswitch">
                             <span class="px-2 py-1 text-sm rounded-md bg-gray-200">
                                 @switch($listing->job_type)
                                     @case(1)
@@ -53,20 +40,47 @@
                                     @default
                                 @endswitch
                             </span>
-                            <span class="text-sm">
-                                {{ $listing->hourly_wage }}
-                            </span>
+                            <a href="/?job_category={{ $listing->job_category }}"
+                                class="px-2 py-1 text-sm rounded-md bg-gray-200">
+                                @switch($listing->job_category)
+                                    @case(1)
+                                        {{ 'Arts, Design, Entertainment, Sports and Media' }}
+                                    @break
+
+                                    @case(2)
+                                        {{ 'Computer and Mathematical' }}
+                                    @break
+
+                                    @case(3)
+                                        {{ 'Education, Training and Library' }}
+                                    @break
+
+                                    @case(4)
+                                        {{ 'Office and Administrative Support' }}
+                                    @break
+
+                                    @default
+                                @endswitch
+                            </a>
                         </div>
                     </div>
-                    @foreach ($listing->companies as $company)
-                        <p>{{ $company->company_name }}</p>
-                    @endforeach
+                    <ul class="flex flex-wrap items-center space-x-5">
+                        @foreach ($listing->companies as $company)
+                            <li class="text-sm">{{ $company->company_name }}</li>
+                        @endforeach
+                        <li class="text-sm list-disc">
+                            {{ $listing->hourly_wage }}
+                        </li>
+                    </ul>
                 </div>
                 @unless (count($listing->applicants) == 0)
                     @foreach ($listing->applicants as $applicant)
-                        @if ((auth()->user()->name ?? []) == $applicant->applicant_name)
+                        @if ((auth()->user()->name ?? false) == $applicant->applicant_name)
                             <span
                                 class="w-full text-center bg-gray-200 text-gray-500 dark:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none dark:focus:ring-gray-800">Applied</span>
+                        @else
+                            <a href="/job/{{ $listing->id }}/apply"
+                                class="px-4 py-2 rounded-md bg-blue-600 text-white w-full text-center">Apply Now</a>
                         @endif
                     @endforeach
                 @else

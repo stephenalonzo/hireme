@@ -18,6 +18,13 @@ class Company extends Model
         'company_address',
     ];
 
+    public function scopeFilter($query, array $filters)
+    {
+        if ($filters['company'] ?? false) {
+            $query->where('company_name', 'like', '%' . request('company') . '%');
+        }
+    }
+
     public function listings()
     {
         return $this->belongsToMany(Listing::class);

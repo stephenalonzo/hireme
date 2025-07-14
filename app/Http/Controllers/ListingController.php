@@ -6,7 +6,7 @@ use App\Models\User;
 use App\Models\Company;
 use App\Models\Listing;
 use Illuminate\Http\Request;
-use App\Http\Requests\AuthenticateRequest;
+use App\Http\Requests\UserRequest;
 use App\Http\Requests\CompanyRequest;
 use App\Http\Requests\ListingRequest;
 use App\Models\CompanyListing;
