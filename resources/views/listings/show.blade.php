@@ -5,7 +5,7 @@
                 <div class="space-y-3">
                     <div class="space-y-2">
                         <div class="flex flex-wrap items-center space-x-3">
-                            <a href="/?job={{ str_replace('#', '%23', $listing->uid) }}"
+                            <a href="/?_token={{ CSRF_TOKEN() }}&job={{ str_replace('#', '%23', $listing->uid) }}"
                                 class="text-sm text-gray-400">{{ $listing->uid }}</a>
                         </div>
                         <h3 class="mb-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white">
@@ -19,7 +19,8 @@
                                             @default
                                             {{ 'items-center space-x-3' }}
                                         @endswitch">
-                            <span class="px-2 py-1 text-sm rounded-md bg-gray-200">
+                            <a href="/?_token={{ CSRF_TOKEN() }}&job_type={{ $listing->job_type }}"
+                                class="px-2 py-1 text-sm rounded-md bg-gray-200">
                                 @switch($listing->job_type)
                                     @case(1)
                                         {{ 'Full-Time' }}
@@ -39,8 +40,8 @@
 
                                     @default
                                 @endswitch
-                            </span>
-                            <a href="/?job_category={{ $listing->job_category }}"
+                            </a>
+                            <a href="/?_token={{ CSRF_TOKEN() }}&job_category={{ $listing->job_category }}"
                                 class="px-2 py-1 text-sm rounded-md bg-gray-200">
                                 @switch($listing->job_category)
                                     @case(1)
@@ -74,15 +75,13 @@
                     </ul>
                 </div>
                 @unless (count($listing->applicants) == 0)
-                    @foreach ($listing->applicants as $applicant)
-                        @if ((auth()->user()->name ?? false) == $applicant->applicant_name)
-                            <span
-                                class="w-full text-center bg-gray-200 text-gray-500 dark:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none dark:focus:ring-gray-800">Applied</span>
-                        @else
-                            <a href="/job/{{ $listing->id }}/apply"
-                                class="px-4 py-2 rounded-md bg-blue-600 text-white w-full text-center">Apply Now</a>
-                        @endif
-                    @endforeach
+                    @if ($listing->applicants->contains('applicant_name', auth()->user()->name ?? false))
+                        <span
+                            class="w-full text-center bg-gray-200 text-gray-500 dark:text-white focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-4 lg:px-5 py-2 lg:py-2.5 mr-2 focus:outline-none dark:focus:ring-gray-800">Applied</span>
+                    @else
+                        <a href="/job/{{ $listing->id }}/apply"
+                            class="px-4 py-2 rounded-md bg-blue-600 text-white w-full text-center">Apply Now</a>
+                    @endif
                 @else
                     <a href="/job/{{ $listing->id }}/apply"
                         class="px-4 py-2 rounded-md bg-blue-600 text-white w-full text-center">Apply Now</a>

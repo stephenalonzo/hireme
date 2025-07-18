@@ -44,11 +44,19 @@ class ListingController extends Controller
 
     public function create()
     {
+        $user = User::find((auth()->user()->id ?? []));
+
         if (!auth()->user()) {
             return view('listings.company-details');
         }
 
-        return redirect('/post-job/company-details/job-details');
+        if ($user->company_id != null) {
+            return redirect('/post-job/company-details/job-details');
+        }
+
+        return view('listings.company-details', [
+            'user' => $user
+        ]);
     }
 
     public function createCompanyDetails(CompanyRequest $request)

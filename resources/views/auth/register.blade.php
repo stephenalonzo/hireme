@@ -48,6 +48,9 @@
                                 class="font-medium text-blue-600 hover:underline dark:text-blue-500">Log in</a>
                         </p>
                     </form>
+                    <div class="flex items-center">
+                        <a href="/" class="text-sm">&larr; <span class="hover:underline">Return to home</span></a>
+                    </div>
                 </div>
             </div>
         </div>

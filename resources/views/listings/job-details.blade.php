@@ -2,6 +2,40 @@
     <section class="p-6">
         <div class="mx-auto w-full max-w-2xl space-y-4 lg:py-16">
             <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">Create job listing</h2>
+            @if (session()->has('method_boolean'))
+                <div>
+                    <h2 class="sr-only">Steps</h2>
+
+                    <div
+                        class="relative after:absolute after:inset-x-0 after:top-1/2 after:block after:h-0.5 after:-translate-y-1/2 after:rounded-lg after:bg-gray-100">
+                        <ol class="relative z-10 flex justify-between text-sm font-medium text-gray-500">
+                            <li class="flex items-center gap-2 bg-white p-2">
+                                <span class="rounded-full bg-blue-600 text-[10px]/6 text-white">
+                                    <svg class="size-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </span>
+                                {{-- <span
+                                    class="size-6 rounded-full bg-blue-600 text-center text-[10px]/6 font-bold text-white">
+                                    1
+                                </span> --}}
+
+                                <span class="hidden sm:block"> Company Details </span>
+                            </li>
+
+                            <li class="flex items-center gap-2 bg-white p-2">
+                                <span class="size-6 rounded-full bg-gray-100 text-center text-[10px]/6 font-bold"> 2
+                                </span>
+
+                                <span class="hidden sm:block"> Job Details </span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            @endif
             @guest
                 <div>
                     <h2 class="sr-only">Steps</h2>

@@ -26,7 +26,7 @@ class CompanyRequest extends FormRequest
             'company_logo' => ['nullable'],
             'company_name' => 'required',
             'company_website' => ['nullable'],
-            'company_email' => ['required', 'email', Rule::unique('company', 'email')],
+            'company_email' => ['required', 'email', Rule::unique('companies', 'company_email')],
             'company_phone' => 'required',
             'company_address' => 'required',
             'name' => 'required',

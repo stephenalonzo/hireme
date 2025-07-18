@@ -84,9 +84,15 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="col-span-2">
-                        <p class="text-center">No active job listings found.</p>
-                    </div>
+                    @if (request('job'))
+                        <div class="col-span-2">
+                            <p class="text-center">No search results for {{ request('job') }}.</p>
+                        </div>
+                    @else
+                        <div class="col-span-2">
+                            <p class="text-center">No active job listings found.</p>
+                        </div>
+                    @endif
                 @endunless
             </div>
         </div>

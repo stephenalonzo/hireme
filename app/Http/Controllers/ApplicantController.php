@@ -17,6 +17,21 @@ class ApplicantController extends Controller
         ]);
     }
 
+    public function show(Applicant $applicant)
+    {
+        $applicants = Applicant::where('applicant_name', '=', (auth()->user()->name ?? false))->get();
+
+        foreach ($applicants as $applicant) {
+            if ($applicant) {
+                return view('auth.applications', [
+                    'applicant' => $applicant
+                ]);
+            }
+        }
+
+        return view('auth.applications');
+    }
+
     public function store(ApplicantRequest $request)
     {
         $validated = $request->validated();

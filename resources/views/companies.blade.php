@@ -13,7 +13,7 @@
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
                                     {{ $company->company_name }}
                                 </h5>
-                                <a href="/?job={{ $company->company_name }}"
+                                <a href="/?_token={{ CSRF_TOKEN() }}&job={{ $company->company_name }}"
                                     class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-600 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
                                     View Jobs
                                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
@@ -26,9 +26,15 @@
                         </div>
                     @endforeach
                 @else
-                    <div class="col-span-2">
-                        <p class="text-center">No active job listings found.</p>
-                    </div>
+                    @if (request('company'))
+                        <div class="col-span-2">
+                            <p class="text-center">No search results for {{ request('company') }}.</p>
+                        </div>
+                    @else
+                        <div class="col-span-2">
+                            <p class="text-center">No companies found.</p>
+                        </div>
+                    @endif
                 @endunless
             </div>
         </div>
