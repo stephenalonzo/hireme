@@ -7,7 +7,7 @@
                     @foreach ($companies as $company)
                         <div
                             class="max-w-full p-6 flex items-center justify-between bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700">
-                            <img src="{{ $company->company_logo ? asset('storage') . '/' . $company->company_logo : '' }}"
+                            <img src="{{ $company->company_logo ? asset('storage/') . '/' . $company->company_logo : '' }}"
                                 class="w-16" alt="">
                             <div class="flex flex-col items-end justify-between">
                                 <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
