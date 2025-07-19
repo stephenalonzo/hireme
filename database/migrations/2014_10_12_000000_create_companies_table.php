@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('company_website')->unique();
             $table->string('company_email')->unique();
             $table->string('company_phone')->unique();
-            $table->longText('company_address')->unique();
+            $table->string('company_address')->unique();
             $table->timestamps();
         });
     }
