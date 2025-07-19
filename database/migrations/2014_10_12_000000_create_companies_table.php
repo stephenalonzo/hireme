@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
             $table->longText('company_logo')->nullable();
-            $table->string('company_name');
-            $table->string('company_website');
-            $table->string('company_email');
-            $table->string('company_phone');
-            $table->longText('company_address');
+            $table->string('company_name')->unique();
+            $table->string('company_website')->unique();
+            $table->string('company_email')->unique();
+            $table->string('company_phone')->unique();
+            $table->longText('company_address')->unique();
             $table->timestamps();
         });
     }

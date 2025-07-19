@@ -30,7 +30,7 @@ class UserController extends Controller
             return redirect('/');
         }
 
-        return back();
+        return back()->withErrors(['email' => 'Invalid Credentials'])->onlyInput('email');
     }
 
     public function store(RegisterRequest $request)
