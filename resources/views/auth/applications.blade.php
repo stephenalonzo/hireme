@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="p-6">
+    <section class="p-6 min-h-screen">
         <div class="relative overflow-x-auto mx-auto w-full max-w-2xl lg:py-16">
             <table
                 class="w-full text-sm text-left border border-gray-200 rtl:text-right text-gray-500 dark:text-gray-400">

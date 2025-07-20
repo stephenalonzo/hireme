@@ -1,6 +1,6 @@
 <x-layout>
     <x-search></x-search>
-    <section class="p-6">
+    <section class="p-6 min-h-screen">
         <div class="mx-auto w-full md:max-w-xl lg:max-w-4xl">
             <div class="grid gap-6 lg:grid-cols-2">
                 @unless (count($companies) == 0)

@@ -1,3 +1,6 @@
 <x-header></x-header>
 {{ $slot }}
-<x-footer></x-footer>
+@if (Route::currentRouteName() === 'Login' || Route::currentRouteName() === 'Register')
+@else
+    <x-footer></x-footer>
+@endif

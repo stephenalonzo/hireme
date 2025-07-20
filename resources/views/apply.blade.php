@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="p-6">
+    <section class="p-6 min-h-screen">
         <div class="mx-auto w-full max-w-2xl space-y-6 lg:py-16">
             <div class="space-y-2">
                 <label for="company_name" class="block mb-2 text-sm font-medium text-gray-900dark:text-white">Application

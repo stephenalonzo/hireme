@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="p-6">
+    <section class="p-6 min-h-screen">
         <div class="mx-auto w-full md:max-w-3xl">
             <div class="flex flex-col items-start space-y-4">
                 <div class="space-y-3">

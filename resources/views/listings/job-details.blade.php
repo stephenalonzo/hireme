@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="p-6">
+    <section class="p-6 min-h-screen">
         <div class="mx-auto w-full max-w-2xl space-y-4 lg:py-16">
             <h2 class="mb-4 text-3xl font-bold text-gray-900 dark:text-white">Create job listing</h2>
             @if (session()->has('method_boolean'))
