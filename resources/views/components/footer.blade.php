@@ -1,6 +1,6 @@
     <footer class="bg-gray-100 dark:bg-gray-800">
         <div class="w-full mx-auto max-w-3xl p-4 flex items-center justify-between">
-            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">Copyright ©
+            <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400 col-span-2">Copyright ©
                 {{ date('Y', strtotime(now())) }}
                 All Rights Reserved
             </span>
